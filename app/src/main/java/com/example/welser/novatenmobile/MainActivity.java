@@ -28,7 +28,7 @@ public class MainActivity extends ActionBarActivity{
     //private SmartFragmentStatePagerAdapter adapterViewPager;
 
 
-
+    // ActionBarActivity is depricated
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
