@@ -28,6 +28,9 @@
 
             </intent-filter>
         </activity>
+        <activity android:name=".Settings"
+            android:label="Settings">
+        </activity>
         <activity
             android:name=".AllProductsActivity"
             android:label="All Products">
