@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,7 +24,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity{
+public class MainActivity extends AppCompatActivity {
     FragmentStatePagerAdapter adapterViewPager;
     //private SmartFragmentStatePagerAdapter adapterViewPager;
 
@@ -37,7 +38,6 @@ public class MainActivity extends ActionBarActivity{
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
-
 
 
         // Attach the page change listener inside the activity
@@ -105,7 +105,7 @@ public class MainActivity extends ActionBarActivity{
             switch (position) {
 
                 case 0:
-                    return "Alarmliste (Page " + position +")";
+                    return "Alarmliste (Page " + position + ")";
                 case 1:
                     return "Stats " + position;
                 case 2:
@@ -128,7 +128,7 @@ public class MainActivity extends ActionBarActivity{
         inflater.inflate(R.menu.menu_main_actions, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
+    /**
     public void onClick(View v) {
 
         //new MyAsyncTask().execute("Test");
@@ -136,7 +136,7 @@ public class MainActivity extends ActionBarActivity{
         startActivity(i);
     }
 
-    /**
+
      * Let's the user tap the activity icon to go 'home'.
      * Requires setHomeButtonEnabled() in onCreate().
      */
@@ -145,7 +145,7 @@ public class MainActivity extends ActionBarActivity{
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.action_refresh:
-
+                onClick(menuItem.getItemId());
             default:
                 return (super.onOptionsItemSelected(menuItem));
 
@@ -160,8 +160,21 @@ public class MainActivity extends ActionBarActivity{
         actionBar.setDisplayShowTitleEnabled(true);
     } */
 
-    /* Refresh-function
-    private void refresh() {
+    private void onClick(int i) {
+
+
+        switch (i) {
+            case 1:
+
+            case 2:
+
+            default:
+
+        }
+
+        Intent intent = new Intent(this, Settings.class);
+        startActivity(intent);
+        /*
         RalisierungsFragment.LoadAllProducts lap =null;
         lap.execute();
         Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_LONG).show();
@@ -176,12 +189,12 @@ public class MainActivity extends ActionBarActivity{
         transaction.addToBackStack(null);
         // Commit the transaction
         transaction.commit();
-    */
+        */
 
     }
 
 
-
+}
 
 
 
