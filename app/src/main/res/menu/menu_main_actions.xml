@@ -14,4 +14,7 @@
         android:icon="@drawable/help"
         android:title="@string/action_compose"
         NovaTENmobile:showAsAction="ifRoom" />
+    <item android:id="@+id/action_settings"
+        android:title="Settings">
+    </item>
 </menu>

@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,6 +33,7 @@ public class MainActivity extends ActionBarActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //setupTabs();
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
@@ -44,8 +46,8 @@ public class MainActivity extends ActionBarActivity{
             // This method will be invoked when a new page becomes selected.
             @Override
             public void onPageSelected(int position) {
-               // Toast.makeText(MainActivity.this,
-                 //       "Selected page position: " + position, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(MainActivity.this,
+                //       "Selected page position: " + position, Toast.LENGTH_SHORT).show();
             }
 
             // This method will be invoked when the current page is scrolled
@@ -138,17 +140,27 @@ public class MainActivity extends ActionBarActivity{
      * Let's the user tap the activity icon to go 'home'.
      * Requires setHomeButtonEnabled() in onCreate().
      */
+
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.action_refresh:
-                return true;
+
             default:
                 return (super.onOptionsItemSelected(menuItem));
+
         }
 
     }
+   /*
+    private void setupTabs() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(true);
+    } */
 
+    /* Refresh-function
     private void refresh() {
         RalisierungsFragment.LoadAllProducts lap =null;
         lap.execute();
@@ -164,7 +176,7 @@ public class MainActivity extends ActionBarActivity{
         transaction.addToBackStack(null);
         // Commit the transaction
         transaction.commit();
-
+    */
 
     }
 
@@ -174,6 +186,5 @@ public class MainActivity extends ActionBarActivity{
 
 
 
-}
 
 

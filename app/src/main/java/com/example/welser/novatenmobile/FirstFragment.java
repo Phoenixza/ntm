@@ -97,7 +97,7 @@ public class FirstFragment extends Fragment {
         mView = rootView;
 
         new LoadAllProducts().execute();
-        //initData();
+
 
 
         return rootView;
