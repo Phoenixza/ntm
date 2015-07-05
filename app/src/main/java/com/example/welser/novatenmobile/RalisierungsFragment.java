@@ -4,6 +4,7 @@ package com.example.welser.novatenmobile;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -60,6 +61,7 @@ public class RalisierungsFragment extends ListFragment {
     private static String url_all_products = "http://141.28.100.152/phpandroid/get_all_products.php";
     // products JSONArray
     JSONArray products = null;
+    public TextView text;
 
     // newInstance constructor for creating fragment with arguments
     public static RalisierungsFragment newInstance(int page, String title) {
@@ -77,15 +79,10 @@ public class RalisierungsFragment extends ListFragment {
         super.onCreate(savedInstanceState);
         page = getArguments().getInt("someInt", 0);
         title = getArguments().getString("someTitle");
-        String[] values = new String[] {"A", "B", "C", "D","E","F","G","H","I","J","K","L"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_expandable_list_item_1, values);
-
-
+        text = (TextView) getActivity().findViewById(R.id.name);
         // Loading products in Background Thread
         new LoadAllProducts().execute();
 
-        //setListAdapter(adapter);
     }
     /**
      * Background Async Task to Load all product by making HTTP Request
@@ -178,10 +175,10 @@ public class RalisierungsFragment extends ListFragment {
                             R.layout.list_item, new String[]{TAG_PID,
                             TAG_NAME, TAG_PRICE, TAG_DATUM,TAG_DESCRIPTION},
                             new int[]{R.id.pid, R.id.name, R.id.price, R.id.datum, R.id.description});
-                    // updating listview
-                    int colorPos = 80 % colors.length;
+                            //text.setBackgroundColor(Color.GREEN);
 
-                    setListAdapter(adapter);
+
+                            setListAdapter(adapter);
                 }
             });
 
