@@ -175,7 +175,7 @@ public class SecondFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(getActivity()); // abgeändert
+            pDialog = new ProgressDialog(getActivity());
             pDialog.setMessage("Loading data. Please wait...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
