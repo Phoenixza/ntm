@@ -1,33 +1,23 @@
 package com.example.welser.novatenmobile;
 
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.app.ListFragment;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.RadioButton;
 
 
 public class MainActivity extends AppCompatActivity {
     FragmentStatePagerAdapter adapterViewPager;
     //private SmartFragmentStatePagerAdapter adapterViewPager;
-
+    public RadioButton five;
+    public RadioButton fiveteen;
 
     // ActionBarActivity is depricated
     @Override
@@ -35,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //setupTabs();
+        five = (RadioButton) findViewById(R.id.five);
+        fiveteen = (RadioButton) findViewById(R.id.fiveteen);
+
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
@@ -46,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
             // This method will be invoked when a new page becomes selected.
             @Override
             public void onPageSelected(int position) {
-                // Toast.makeText(MainActivity.this,
-                //       "Selected page position: " + position, Toast.LENGTH_SHORT).show();
             }
 
             // This method will be invoked when the current page is scrolled
@@ -66,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    // Nutzen des FragmentSatePagerAdapter gegenüber dem FragmentPagerAdapter da dieser die Fragments sichert
     public static class MyPagerAdapter extends FragmentStatePagerAdapter {
         private static int NUM_ITEMS = 4;
 
@@ -117,8 +106,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return null;
         }
-
-
     }
 
     @Override
@@ -192,10 +179,7 @@ public class MainActivity extends AppCompatActivity {
         // Commit the transaction
         transaction.commit();
         */
-
     }
-
-
 }
 
 

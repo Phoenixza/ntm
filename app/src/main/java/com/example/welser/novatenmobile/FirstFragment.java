@@ -95,11 +95,7 @@ public class FirstFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.chart, container, false);
         mView = rootView;
-
         new LoadAllProducts().execute();
-
-
-
         return rootView;
     }
 
@@ -169,12 +165,11 @@ public class FirstFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(getActivity()); // abgeändert
+            pDialog = new ProgressDialog(getActivity());
             pDialog.setMessage("Loading data. Please wait...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();
-
         }
 
         /**
@@ -249,7 +244,6 @@ public class FirstFragment extends Fragment {
                     /**
                      * Updating parsed JSON data into ListView
                      * */
-
                 }
             });
 
