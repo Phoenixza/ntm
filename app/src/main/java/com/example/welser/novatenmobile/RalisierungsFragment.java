@@ -29,6 +29,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -148,6 +149,7 @@ public class RalisierungsFragment extends ListFragment {
                         // adding HashList to ArrayList
                         productsList.add(map);
 
+
                     }
                 } else {
                     // no products found
@@ -184,21 +186,22 @@ public class RalisierungsFragment extends ListFragment {
                      //aladapter.notifyDataSetChanged();
                      //getListView().setAdapter(aladapter);
                      setListAdapter(aladapter);
-                     * */
+                     * */  /*
                             ListAdapter adapter = new SimpleAdapter(
                                     getActivity(), productsList,
                                     R.layout.list_item, new String[]{TAG_PID,
                                     TAG_NAME, TAG_PRICE, TAG_DATUM,TAG_DESCRIPTION},
-                                    new int[]{R.id.pid, R.id.name, R.id.price, R.id.datum, R.id.description});
+                                         new int[]{R.id.pid, R.id.name, R.id.price, R.id.datum, R.id.description});*/
 
 
 
 
                             String test[] = {"hest", "test", "abc"};
-                            AlarmAdapter aladapter = new AlarmAdapter(getActivity(), new String[]{TAG_PID,
+                            AlarmAdapter aladapter = new AlarmAdapter(getActivity(), productsList, new String[]{TAG_PID,
                                     TAG_NAME, TAG_PRICE, TAG_DATUM,TAG_DESCRIPTION},new int[]{R.id.pid, R.id.name, R.id.price, R.id.datum, R.id.description});
-                            aladapter.notifyDataSetChanged();
+                            //aladapter.notifyDataSetChanged();
                             getListView().setAdapter(aladapter);
+                            //listView.setAdapter(aladapter);
                             setListAdapter(aladapter);
 
 
