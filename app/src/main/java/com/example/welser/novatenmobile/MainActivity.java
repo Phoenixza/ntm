@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         five = (RadioButton) findViewById(R.id.five);
         fiveteen = (RadioButton) findViewById(R.id.fiveteen);
 
+
+
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);

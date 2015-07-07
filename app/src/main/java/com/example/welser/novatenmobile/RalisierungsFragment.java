@@ -42,6 +42,7 @@ public class RalisierungsFragment extends ListFragment {
     private int page;
     public int value = 111;
     // JSON Node names
+    public String ausgabeNamen[];
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "products";
     private static final String TAG_PID = "pid";
@@ -52,6 +53,7 @@ public class RalisierungsFragment extends ListFragment {
     static int [] colors = new int[] {0xF0FFFF, 0xD3D3D3 };
     // Hashmap for ListView
     ArrayList<HashMap<String, String>>productsList = new ArrayList<HashMap<String, String>>();
+
     // Progress Dialog
     private ProgressDialog pDialog;
     // Creating JSON Parser object
@@ -145,6 +147,7 @@ public class RalisierungsFragment extends ListFragment {
                         set(products.length());
                         // adding HashList to ArrayList
                         productsList.add(map);
+
                     }
                 } else {
                     // no products found
@@ -165,20 +168,41 @@ public class RalisierungsFragment extends ListFragment {
             pDialog.dismiss();
             // updating UI from Background Thread
             getActivity().runOnUiThread(new Runnable() {
-                public void run() {
+                        public void run() {
                     /**
                      * Updating parsed JSON data into ListView
+                     *
+                     * ListAdapter adapter = new SimpleAdapter(
+                     getActivity(), productsList,
+                     R.layout.list_item, new String[]{TAG_PID,
+                     TAG_NAME, TAG_PRICE, TAG_DATUM,TAG_DESCRIPTION},
+                     new int[]{R.id.pid, R.id.name, R.id.price, R.id.datum, R.id.description});
+
+                     setListAdapter(adapter);
+
+                     //AlarmAdapter aladapter = new AlarmAdapter(getActivity(), test);
+                     //aladapter.notifyDataSetChanged();
+                     //getListView().setAdapter(aladapter);
+                     setListAdapter(aladapter);
                      * */
-
-                    ListAdapter adapter = new SimpleAdapter(
-                            getActivity(), productsList,
-                            R.layout.list_item, new String[]{TAG_PID,
-                            TAG_NAME, TAG_PRICE, TAG_DATUM,TAG_DESCRIPTION},
-                            new int[]{R.id.pid, R.id.name, R.id.price, R.id.datum, R.id.description});
-                            //text.setBackgroundColor(Color.GREEN);
+                            ListAdapter adapter = new SimpleAdapter(
+                                    getActivity(), productsList,
+                                    R.layout.list_item, new String[]{TAG_PID,
+                                    TAG_NAME, TAG_PRICE, TAG_DATUM,TAG_DESCRIPTION},
+                                    new int[]{R.id.pid, R.id.name, R.id.price, R.id.datum, R.id.description});
 
 
-                            setListAdapter(adapter);
+
+
+                            String test[] = {"hest", "test", "abc"};
+                            AlarmAdapter aladapter = new AlarmAdapter(getActivity(), new String[]{TAG_PID,
+                                    TAG_NAME, TAG_PRICE, TAG_DATUM,TAG_DESCRIPTION},new int[]{R.id.pid, R.id.name, R.id.price, R.id.datum, R.id.description});
+                            aladapter.notifyDataSetChanged();
+                            getListView().setAdapter(aladapter);
+                            setListAdapter(aladapter);
+
+
+
                 }
             });
 

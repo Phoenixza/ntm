@@ -232,7 +232,7 @@ public class Alarm extends Fragment {
                             Log.i("major count", unknown + "");
                         } else if(name.startsWith("info")){
                             unknown ++;
-                            Log.i("infso count", info + "");}
+                            Log.i("info count", info + "");}
                     }
                 } else {
                     // no products found
