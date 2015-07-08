@@ -27,7 +27,10 @@ public class MainActivity extends AppCompatActivity {
         //setupTabs();
         five = (RadioButton) findViewById(R.id.five);
         fiveteen = (RadioButton) findViewById(R.id.fiveteen);
+        Bundle bundle = getIntent().getExtras();
+        if(bundle.getBoolean("Auswahl")!= false){
 
+        }
 
 
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 case 0: // Fragment # 0 - This will show FirstFragment
                     return RalisierungsFragment.newInstance(0, "Page # 1");
                 case 1: // Fragment # 0 - This will show FirstFragment different title
+                    
                     return FirstFragment.newInstance(2, "Page # 3");
                 case 2: // Fragment # 1 - This will show SecondFragment
                     return SecondFragment.newInstance(2, "Page # 3");

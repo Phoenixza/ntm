@@ -173,19 +173,6 @@ public class RalisierungsFragment extends ListFragment {
                         public void run() {
                     /**
                      * Updating parsed JSON data into ListView
-                     *
-                     * ListAdapter adapter = new SimpleAdapter(
-                     getActivity(), productsList,
-                     R.layout.list_item, new String[]{TAG_PID,
-                     TAG_NAME, TAG_PRICE, TAG_DATUM,TAG_DESCRIPTION},
-                     new int[]{R.id.pid, R.id.name, R.id.price, R.id.datum, R.id.description});
-
-                     setListAdapter(adapter);
-
-                     //AlarmAdapter aladapter = new AlarmAdapter(getActivity(), test);
-                     //aladapter.notifyDataSetChanged();
-                     //getListView().setAdapter(aladapter);
-                     setListAdapter(aladapter);
                      * */
                             ListAdapter adapter = new SimpleAdapter(
                                     getActivity(), productsList,
@@ -211,23 +198,7 @@ public class RalisierungsFragment extends ListFragment {
                                     return view;
                                 }
                             };
-
-
-
-
-
-                            //String test[] = {"hest", "test", "abc"};
-                           // AlarmAdapter aladapter = new AlarmAdapter(getActivity(), productsList, new String[]{TAG_PID,
-                             //       TAG_NAME, TAG_PRICE, TAG_DATUM,TAG_DESCRIPTION},new int[]{R.id.pid, R.id.name, R.id.price, R.id.datum, R.id.description});
-                            //AlarmAdapter aladapter = new AlarmAdapter(getActivity(), productsList,new String[]{TAG_PID,
-                                              //TAG_NAME, TAG_PRICE, TAG_DATUM,TAG_DESCRIPTION},null);
-                            //aladapter.notifyDataSetChanged();
-                            //getListView().setAdapter(aladapter);
-                            //aladapter.notifyDataSetChanged();
-                            //listView.setAdapter(adapter);
-
-
-                            setListAdapter(adapter);
+                   setListAdapter(adapter);
 
 
 

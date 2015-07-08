@@ -1,9 +1,11 @@
 package com.example.welser.novatenmobile;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ public class Settings extends Activity {
     public RadioGroup radioGroup;
     public RadioButton radioButton;
     public static int radioValue;
+    public Button save;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,25 +30,53 @@ public class Settings extends Activity {
         five = (RadioButton) findViewById(R.id.five);
         fiveteen = (RadioButton) findViewById(R.id.fiveteen);
 
-        five.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int bool =radioGroup.getCheckedRadioButtonId();
-                radioButton = (RadioButton) findViewById(bool);
-                radioValue = boolraidosend(bool);
-                Toast.makeText(Settings.this, radioButton.getText(), Toast.LENGTH_LONG).show();
-            }
-        });
-        fiveteen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int bool =radioGroup.getCheckedRadioButtonId();
-                radioButton = (RadioButton) findViewById(bool);
-                radioValue = boolraidosend(bool);
-                Toast.makeText(Settings.this, radioButton.getText(), Toast.LENGTH_LONG).show();
-            }
-        });
+
+        save = (Button) findViewById(R.id.btn_save);
+        save.setOnClickListener(clickHandler);
+        fiveteen.setOnClickListener(clickHandler);
+        five.setOnClickListener(clickHandler);
+
     }
+
+    View.OnClickListener clickHandler = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.btn_save:
+                    Intent intent = new Intent(Settings.this, MainActivity.class);
+                    // Prüfen ob Radiabuttons aktiv sind:
+                    Boolean selection[] = new Boolean[10];
+                    if(five.isChecked()){
+                        selection[0]= true;
+                    }
+                    if(fiveteen.isChecked()){
+                        selection[1]= true;
+                    }
+                    intent.putExtra("Auswahl",selection);
+                    startActivity(intent);
+                    break;
+                case R.id.five:
+                    int boola =radioGroup.getCheckedRadioButtonId();
+                    radioButton = (RadioButton) findViewById(boola);
+                    radioValue = boolraidosend(boola);
+                    Toast.makeText(Settings.this, radioButton.getText(), Toast.LENGTH_LONG).show();
+                    break;
+                case R.id.fiveteen:
+                    int boolb =radioGroup.getCheckedRadioButtonId();
+                    radioButton = (RadioButton) findViewById(boolb);
+                    radioValue = boolraidosend(boolb);
+                    Toast.makeText(Settings.this, radioButton.getText(), Toast.LENGTH_LONG).show();
+                    break;
+                default:
+                    break;
+            }
+
+
+
+
+        }
+    };
 
 
     public static int boolraidosend(int bool){
