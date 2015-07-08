@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="NAME"
-        android:background="#16FCD6"
+        android:background="#AAAAAA"
         android:id="@+id/name"
         android:layout_alignBottom="@+id/pids"
         android:layout_alignParentLeft="true"

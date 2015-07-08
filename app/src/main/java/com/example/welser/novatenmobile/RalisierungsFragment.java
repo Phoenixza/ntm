@@ -115,7 +115,7 @@ public class RalisierungsFragment extends ListFragment {
             JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
 
             // Check your log cat for JSON reponse
-            Log.d("All Products: ",value + "");
+            Log.d("All Products: ", value + "");
 
             try {
                 // Checking for SUCCESS TAG
@@ -186,23 +186,48 @@ public class RalisierungsFragment extends ListFragment {
                      //aladapter.notifyDataSetChanged();
                      //getListView().setAdapter(aladapter);
                      setListAdapter(aladapter);
-                     * */  /*
+                     * */
                             ListAdapter adapter = new SimpleAdapter(
                                     getActivity(), productsList,
                                     R.layout.list_item, new String[]{TAG_PID,
                                     TAG_NAME, TAG_PRICE, TAG_DATUM,TAG_DESCRIPTION},
-                                         new int[]{R.id.pid, R.id.name, R.id.price, R.id.datum, R.id.description});*/
+                                         new int[]{R.id.pid, R.id.name, R.id.price, R.id.datum, R.id.description}){
+
+
+                                @Override
+                                public View getView (int position, View convertView, ViewGroup parent) {
+                                    View view = super.getView(position, convertView, parent);
+                                    if ("major".equals(productsList.get(position).get(TAG_NAME))){
+                                        view.setBackgroundColor(Color.BLUE);
+                                     } else if ("cirtical".equals(productsList.get(position).get(TAG_NAME))){
+                                        view.setBackgroundColor(Color.RED);
+                                     } else if ("warning".equals(productsList.get(position).get(TAG_NAME))) {
+                                        view.setBackgroundColor(Color.RED);
+                                    } else if ("info".equals(productsList.get(position).get(TAG_NAME))) {
+                                        view.setBackgroundColor(Color.GREEN);
+                                    } else {
+                                        view.setBackgroundColor(Color.BLACK);
+                                    }
+                                    return view;
+                                }
+                            };
 
 
 
 
-                            String test[] = {"hest", "test", "abc"};
-                            AlarmAdapter aladapter = new AlarmAdapter(getActivity(), productsList, new String[]{TAG_PID,
-                                    TAG_NAME, TAG_PRICE, TAG_DATUM,TAG_DESCRIPTION},new int[]{R.id.pid, R.id.name, R.id.price, R.id.datum, R.id.description});
+
+                            //String test[] = {"hest", "test", "abc"};
+                           // AlarmAdapter aladapter = new AlarmAdapter(getActivity(), productsList, new String[]{TAG_PID,
+                             //       TAG_NAME, TAG_PRICE, TAG_DATUM,TAG_DESCRIPTION},new int[]{R.id.pid, R.id.name, R.id.price, R.id.datum, R.id.description});
+                            //AlarmAdapter aladapter = new AlarmAdapter(getActivity(), productsList,new String[]{TAG_PID,
+                                              //TAG_NAME, TAG_PRICE, TAG_DATUM,TAG_DESCRIPTION},null);
                             //aladapter.notifyDataSetChanged();
-                            getListView().setAdapter(aladapter);
-                            //listView.setAdapter(aladapter);
-                            setListAdapter(aladapter);
+                            //getListView().setAdapter(aladapter);
+                            //aladapter.notifyDataSetChanged();
+                            //listView.setAdapter(adapter);
+
+
+                            setListAdapter(adapter);
 
 
 

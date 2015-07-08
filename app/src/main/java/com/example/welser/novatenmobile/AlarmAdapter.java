@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by welser on 07.07.2015.
@@ -26,11 +27,19 @@ public class AlarmAdapter extends BaseAdapter {
     ArrayList<HashMap<String, String>> productsList = new ArrayList<HashMap<String, String>>();
 
     public AlarmAdapter(Context context, ArrayList<HashMap<String, String>>productsList, String[] datas, int[] value) {
+
         mInflater = LayoutInflater.from(context);
         mStrings = datas;
         alarmValues = value;
         list = productsList;
-
+        int i = 1;
+        while (i < 5){
+        //List<String> dataString = new ArrayList<>(productsList.)
+        // for(String <str,null> : productsList){
+            mStrings[i] = "testify";
+            //mStrings[i] = productsList.get(i).get(i);
+            i++;
+        }
     }
 
     @Override
@@ -62,11 +71,11 @@ public class AlarmAdapter extends BaseAdapter {
         convertView = mInflater.inflate(R.layout.list_item, null);
 
         ViewHolder holder = new ViewHolder();
-        holder.text = (TextView) convertView.findViewById(R.id.name);
-        holder.text = (TextView) convertView.findViewById(R.id.datum);
-        holder.text = (TextView) convertView.findViewById(R.id.price);
-        holder.text = (TextView) convertView.findViewById(R.id.description);
-        convertView.setTag(holder);
+       // holder.text = (TextView) convertView.findViewById(R.id.name);
+        //holder.text = (TextView) convertView.findViewById(R.id.datum);
+        //holder.text = (TextView) convertView.findViewById(R.id.price);
+        //holder.text = (TextView) convertView.findViewById(R.id.description);
+        //convertView.setTag(holder);
 
 
         //set the datas and the colors to the row
@@ -86,5 +95,6 @@ public class AlarmAdapter extends BaseAdapter {
         ImageView icon;
         ProgressBar progress;
         int position;
+
     }
 }
