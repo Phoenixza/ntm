@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,17 +20,20 @@ public class MainActivity extends AppCompatActivity {
     public RadioButton five;
     public RadioButton fiveteen;
 
-    // ActionBarActivity is depricated
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         //setupTabs();
         five = (RadioButton) findViewById(R.id.five);
         fiveteen = (RadioButton) findViewById(R.id.fiveteen);
-        Bundle bundle = getIntent().getExtras();
-        if(bundle.getBoolean("Auswahl")!= false){
-
+        Intent intent = getIntent();
+        Bundle bundles = intent.getExtras();
+        if(bundles != null){
+            String selection[] = bundles.getStringArray("Auswahl");
+            Toast.makeText(getApplicationContext(),"5 Minuten Intervall "+selection[0] + " und 15 Minuten Intervall " + selection[1],Toast.LENGTH_LONG).show();
         }
 
 
@@ -83,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 case 0: // Fragment # 0 - This will show FirstFragment
                     return RalisierungsFragment.newInstance(0, "Page # 1");
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    
+
                     return FirstFragment.newInstance(2, "Page # 3");
                 case 2: // Fragment # 1 - This will show SecondFragment
                     return SecondFragment.newInstance(2, "Page # 3");
@@ -113,6 +117,9 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -169,22 +176,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
-        /*
-        RalisierungsFragment.LoadAllProducts lap =null;
-        lap.execute();
-        Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_LONG).show();
-        // Create new fragment and transaction
-        android.support.v4.app.Fragment newFragment = adapterViewPager.getItem(3);
-        // consider using Java coding conventions (upper first char class names!!!)
-        android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack
-        transaction.replace(R.id.vpPager,newFragment);
-        transaction.setTransition(android.support.v4.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        transaction.addToBackStack(null);
-        // Commit the transaction
-        transaction.commit();
-        */
     }
 }
 

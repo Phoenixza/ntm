@@ -46,13 +46,15 @@ public class Settings extends Activity {
                 case R.id.btn_save:
                     Intent intent = new Intent(Settings.this, MainActivity.class);
                     // Prüfen ob Radiabuttons aktiv sind:
-                    Boolean selection[] = new Boolean[10];
+                    String selection[] = new String[10];
                     if(five.isChecked()){
-                        selection[0]= true;
-                    }
+                        selection[0]= "true";
+                    } else{ selection[0] = "false";}
+
                     if(fiveteen.isChecked()){
-                        selection[1]= true;
-                    }
+                        selection[1]= "true";
+                    } else{ selection[1] = "false";}
+
                     intent.putExtra("Auswahl",selection);
                     startActivity(intent);
                     break;
