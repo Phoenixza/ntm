@@ -9,6 +9,12 @@
         android:id="@+id/graph_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-
+    <RelativeLayout
+        android:id="@+id/graph_containera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <RelativeLayout
+        android:id="@+id/graph_containerab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>

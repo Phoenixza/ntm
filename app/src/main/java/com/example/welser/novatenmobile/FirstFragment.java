@@ -127,7 +127,7 @@ public class FirstFragment extends Fragment {
         }
 
         renderer.setChartTitleTextSize(60);
-        renderer.setChartTitle("System Alarme");
+        renderer.setChartTitle("System Alarme1");
         renderer.setLabelsTextSize(30);
         renderer.setLabelsColor(Color.GRAY);
         renderer.setLegendTextSize(30);

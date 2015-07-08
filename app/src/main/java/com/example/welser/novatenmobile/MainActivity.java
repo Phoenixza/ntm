@@ -19,20 +19,22 @@ public class MainActivity extends AppCompatActivity {
     //private SmartFragmentStatePagerAdapter adapterViewPager;
     public RadioButton five;
     public RadioButton fiveteen;
-
+    static public String selection[] = new String[9];
+    public Bundle bundles;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        selection[0] = "false";
+        selection[1] = "false";
 
         //setupTabs();
         five = (RadioButton) findViewById(R.id.five);
         fiveteen = (RadioButton) findViewById(R.id.fiveteen);
         Intent intent = getIntent();
-        Bundle bundles = intent.getExtras();
+        bundles = intent.getExtras();
         if(bundles != null){
-            String selection[] = bundles.getStringArray("Auswahl");
+            selection = bundles.getStringArray("Auswahl");
             Toast.makeText(getApplicationContext(),"5 Minuten Intervall "+selection[0] + " und 15 Minuten Intervall " + selection[1],Toast.LENGTH_LONG).show();
         }
 
@@ -83,12 +85,15 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public android.support.v4.app.Fragment getItem(int position) {
             switch (position) {
-
                 case 0: // Fragment # 0 - This will show FirstFragment
                     return RalisierungsFragment.newInstance(0, "Page # 1");
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-
-                    return FirstFragment.newInstance(2, "Page # 3");
+                    //Toast.makeText(, "test", Toast.LENGTH_LONG)
+                    if((selection[0]).startsWith("t")){
+                        return FirstFragment.newInstance(1, "Page # true");
+                    } else {
+                        return SecondFragment.newInstance(2, "Page # false");
+                    }
                 case 2: // Fragment # 1 - This will show SecondFragment
                     return SecondFragment.newInstance(2, "Page # 3");
                 case 3:

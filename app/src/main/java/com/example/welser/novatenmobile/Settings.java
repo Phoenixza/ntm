@@ -20,6 +20,7 @@ public class Settings extends Activity {
     public RadioButton radioButton;
     public static int radioValue;
     public Button save;
+    public static String selection[] = new String[10];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +31,10 @@ public class Settings extends Activity {
         five = (RadioButton) findViewById(R.id.five);
         fiveteen = (RadioButton) findViewById(R.id.fiveteen);
 
-
         save = (Button) findViewById(R.id.btn_save);
         save.setOnClickListener(clickHandler);
         fiveteen.setOnClickListener(clickHandler);
         five.setOnClickListener(clickHandler);
-
     }
 
     View.OnClickListener clickHandler = new View.OnClickListener(){
@@ -46,7 +45,7 @@ public class Settings extends Activity {
                 case R.id.btn_save:
                     Intent intent = new Intent(Settings.this, MainActivity.class);
                     // Prüfen ob Radiabuttons aktiv sind:
-                    String selection[] = new String[10];
+
                     if(five.isChecked()){
                         selection[0]= "true";
                     } else{ selection[0] = "false";}
@@ -73,10 +72,6 @@ public class Settings extends Activity {
                 default:
                     break;
             }
-
-
-
-
         }
     };
 
