@@ -61,13 +61,13 @@ public class Settings extends Activity {
                     int boola =radioGroup.getCheckedRadioButtonId();
                     radioButton = (RadioButton) findViewById(boola);
                     radioValue = boolraidosend(boola);
-                    Toast.makeText(Settings.this, radioButton.getText(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(Settings.this, radioButton.getText(), Toast.LENGTH_LONG).show();
                     break;
                 case R.id.fiveteen:
                     int boolb =radioGroup.getCheckedRadioButtonId();
                     radioButton = (RadioButton) findViewById(boolb);
                     radioValue = boolraidosend(boolb);
-                    Toast.makeText(Settings.this, radioButton.getText(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(Settings.this, radioButton.getText(), Toast.LENGTH_LONG).show();
                     break;
                 default:
                     break;

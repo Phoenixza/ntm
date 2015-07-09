@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     public RadioButton five;
     public RadioButton fiveteen;
     static public String selection[] = new String[9];
-    public Bundle bundles;
+    public static Bundle bundles = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +40,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
-        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
-        vpPager.setAdapter(adapterViewPager);
+        if (bundles == null){
+            adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
+            vpPager.setAdapter(adapterViewPager);
+        } else {
+            adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
+            vpPager.setAdapter(adapterViewPager);
+        }
+
 
 
         // Attach the page change listener inside the activity
@@ -69,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static class MyPagerAdapter extends FragmentStatePagerAdapter {
+
         private static int NUM_ITEMS = 4;
 
         public MyPagerAdapter(FragmentManager fragmentManager) {
@@ -78,46 +85,63 @@ public class MainActivity extends AppCompatActivity {
         // Returns total number of pages
         @Override
         public int getCount() {
-            return NUM_ITEMS;
+
+
+            if (bundles == null){
+                NUM_ITEMS = 1;
+                return NUM_ITEMS;
+            } else {
+                NUM_ITEMS = 4;
+                return NUM_ITEMS;
+            }
+            //return NUM_ITEMS;
         }
 
         // Returns the fragment to display for that page
         @Override
         public android.support.v4.app.Fragment getItem(int position) {
-            switch (position) {
-                case 0: // Fragment # 0 - This will show FirstFragment
-                    return RalisierungsFragment.newInstance(0, "Page # 1");
-                case 1: // Fragment # 0 - This will show FirstFragment different title
-                    //Toast.makeText(, "test", Toast.LENGTH_LONG)
-                    if((selection[0]).startsWith("t")){
-                        return FirstFragment.newInstance(1, "Page # true");
-                    } else {
-                        return SecondFragment.newInstance(2, "Page # false");
-                    }
-                case 2: // Fragment # 1 - This will show SecondFragment
-                    return SecondFragment.newInstance(2, "Page # 3");
-                case 3:
-                    return Alarm.newInstance(3, "Page # 4");
-                default:
-                    return null;
+            if(bundles == null){
+                return RalisierungsFragment.newInstance(0, "Page # 1");
+            } else {
+                switch (position) {
+                    case 0: // Fragment # 0 - This will show FirstFragment
+                        return RalisierungsFragment.newInstance(0, "Page # 1");
+                    case 1: // Fragment # 0 - This will show FirstFragment different title
+                        //Toast.makeText(, "test", Toast.LENGTH_LONG)
+                        if((selection[0]).startsWith("t")){
+                            return FirstFragment.newInstance(1, "Page # true");
+                        } else {
+                            return SecondFragment.newInstance(2, "Page # false");
+                        }
+                    case 2: // Fragment # 1 - This will show SecondFragment
+                        return SecondFragment.newInstance(2, "Page # 3");
+                    case 3:
+                        return Alarm.newInstance(3, "Page # 4");
+                    default:
+                        return null;
+                }
             }
         }
 
         // Returns the page title for the top indicator
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
 
-                case 0:
+                if(bundles == null){
                     return "Alarmliste (Page " + position + ")";
-                case 1:
-                    return "Stats " + position;
-                case 2:
-                    return "Discovery. Page " + position;
-                case 3:
-                    return "Alarmliste";
-                default:
-                    break;
+                } else {
+                    switch (position) {
+                    case 0:
+                        return "Alarmliste (Page " + position + ")";
+                    case 1:
+                        return "Stats " + position;
+                    case 2:
+                        return "Discovery. Page " + position;
+                    case 3:
+                        return "Alarmliste";
+                    default:
+                        break;
+                }
             }
             return null;
         }
