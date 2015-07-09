@@ -22,13 +22,14 @@ public class MainActivity extends AppCompatActivity {
     public RadioButton fiveteen;
     static public String selection[] = new String[9];
     public static Bundle bundles = null;
+    public static int counter = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        selection[0] = "false";
-        selection[1] = "false";
-
+        //selection[0] = "false";
+        //selection[1] = "false";
+        selection = null;
         //setupTabs();
         five = (RadioButton) findViewById(R.id.five);
         fiveteen = (RadioButton) findViewById(R.id.fiveteen);
@@ -36,18 +37,20 @@ public class MainActivity extends AppCompatActivity {
         bundles = intent.getExtras();
         if(bundles != null){
             selection = bundles.getStringArray("Auswahl");
-            Toast.makeText(getApplicationContext(),"5 Minuten Intervall "+selection[0] + " und 15 Minuten Intervall " + selection[1],Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),"5 Minuten Intervall "+selection[0] + " und 15 Minuten Intervall " + selection[1],Toast.LENGTH_LONG).show();
         }
 
 
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
-        if (bundles == null){
+        /*if (bundles == null){
             adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
             vpPager.setAdapter(adapterViewPager);
         } else {
             adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
             vpPager.setAdapter(adapterViewPager);
-        }
+        }*/
+        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
+        vpPager.setAdapter(adapterViewPager);
 
 
 
@@ -73,7 +76,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
+        //Toast.makeText(getApplicationContext(), "Array 0 = " + selection[0] + " Array 1 = " + selection[1] +" Array 2 = " + selection[2]
+          //      +" Array 3 = " + selection[3] +" Array 4 = " + selection[4],Toast.LENGTH_LONG).show();
+        }
 
     public static class MyPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -87,20 +92,41 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
 
-
             if (bundles == null){
                 NUM_ITEMS = 1;
                 return NUM_ITEMS;
             } else {
-                NUM_ITEMS = 4;
+                int i = 0;
+
+                while(selection.length> i){
+                    String a = selection[i];
+                    if (selection[i] != null){
+                        if(a.contains("t")){
+                            counter = counter +1;
+                        }
+                    }
+                    i++;
+                }
+
+                NUM_ITEMS = counter;
+                notifyDataSetChanged();
                 return NUM_ITEMS;
+
             }
             //return NUM_ITEMS;
+
         }
 
         // Returns the fragment to display for that page
         @Override
         public android.support.v4.app.Fragment getItem(int position) {
+
+
+
+
+
+
+
             if(bundles == null){
                 return RalisierungsFragment.newInstance(0, "Page # 1");
             } else {
@@ -116,13 +142,6 @@ public class MainActivity extends AppCompatActivity {
                         //Toast.makeText(app,""+selection[3],Toast.LENGTH_LONG).show();
                         return RalisierungsFragment.newInstance(0, "Page # 1");
                     case 1: // Fragment # 0 - This will show FirstFragment different title
-                        if(selection[3] == "true"){
-                            return FirstFragment.newInstance(1, "Page # true");
-                        } else if(selection[4] == "true"){
-                            return SecondFragment.newInstance(1, "Page # false");
-                        } else if(selection[5] == "true"){
-                            return SecondFragment.newInstance(1, "Page # false");
-                        }
                             return SecondFragment.newInstance(1, "Page # false");
                     case 2: // Fragment # 1 - This will show SecondFragment
                         return SecondFragment.newInstance(2, "Page # 3");
