@@ -3,11 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RadioButton
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Alarmstatistik"
-        android:id="@+id/radioButton"
+        android:id="@+id/rb_alarm"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -15,40 +15,40 @@
         android:layout_marginTop="131dp"
         android:checked="false" />
 
-    <RadioButton
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Devices by CPU Utilization"
-        android:id="@+id/radioButton2"
-        android:layout_below="@+id/radioButton"
+        android:id="@+id/rb_cpu"
+        android:layout_below="@+id/rb_alarm"
         android:checked="false" />
 
-    <RadioButton
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Devices with Alarms"
-        android:id="@+id/radioButton3"
-        android:layout_below="@+id/radioButton2"
+        android:id="@+id/rb_dalarms"
+        android:layout_below="@+id/rb_cpu"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:checked="false" />
 
-    <RadioButton
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Devices by Memory Utilization"
-        android:id="@+id/radioButton4"
-        android:layout_below="@+id/radioButton3"
+        android:id="@+id/rb_memory"
+        android:layout_below="@+id/rb_dalarms"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:checked="false" />
 
-    <RadioButton
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Last N hours Disk Utilization"
-        android:id="@+id/radioButton5"
-        android:layout_below="@+id/radioButton4"
+        android:id="@+id/rb_disk"
+        android:layout_below="@+id/rb_memory"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:checked="false" />
@@ -59,17 +59,17 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Dashboard selection"
         android:id="@+id/textView2"
-        android:layout_above="@+id/radioButton2"
+        android:layout_above="@+id/rb_cpu"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="35dp" />
 
-    <RadioButton
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Busines View"
-        android:id="@+id/radioButton6"
-        android:layout_below="@+id/radioButton5"
+        android:id="@+id/rd_view"
+        android:layout_below="@+id/rb_disk"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:checked="false" />
@@ -115,9 +115,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/textView4"
-        android:layout_below="@+id/radioButton6"
-        android:layout_alignRight="@+id/radioButton"
-        android:layout_alignEnd="@+id/radioButton" />
+        android:layout_below="@+id/rd_view"
+        android:layout_alignRight="@+id/rb_alarm"
+        android:layout_alignEnd="@+id/rb_alarm" />
 
     <Button
         android:layout_width="wrap_content"
@@ -127,5 +127,6 @@
         android:layout_below="@+id/textView4"
         android:layout_alignLeft="@+id/textView4"
         android:layout_alignStart="@+id/textView4" />
+
 
 </RelativeLayout>

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
+    static MainActivity app;
     FragmentStatePagerAdapter adapterViewPager;
     //private SmartFragmentStatePagerAdapter adapterViewPager;
     public RadioButton five;
@@ -105,14 +106,24 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 switch (position) {
                     case 0: // Fragment # 0 - This will show FirstFragment
+                        if(selection[3] == "false"){
+                            return FirstFragment.newInstance(0, "Page # true");
+                        } else if(selection[4] == "true"){
+                            return SecondFragment.newInstance(0, "Page # false");
+                        } else if(selection[5] == "true"){
+                            return SecondFragment.newInstance(0, "Page # false");
+                        }
+                        //Toast.makeText(app,""+selection[3],Toast.LENGTH_LONG).show();
                         return RalisierungsFragment.newInstance(0, "Page # 1");
                     case 1: // Fragment # 0 - This will show FirstFragment different title
-                        //Toast.makeText(, "test", Toast.LENGTH_LONG)
-                        if((selection[0]).startsWith("t")){
+                        if(selection[3] == "true"){
                             return FirstFragment.newInstance(1, "Page # true");
-                        } else {
-                            return SecondFragment.newInstance(2, "Page # false");
+                        } else if(selection[4] == "true"){
+                            return SecondFragment.newInstance(1, "Page # false");
+                        } else if(selection[5] == "true"){
+                            return SecondFragment.newInstance(1, "Page # false");
                         }
+                            return SecondFragment.newInstance(1, "Page # false");
                     case 2: // Fragment # 1 - This will show SecondFragment
                         return SecondFragment.newInstance(2, "Page # 3");
                     case 3:
@@ -134,11 +145,11 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         return "Alarmliste (Page " + position + ")";
                     case 1:
-                        return "Stats " + position;
+                        return "Alarmstatistik";
                     case 2:
-                        return "Discovery. Page " + position;
+                        return "Devices by CPU Utilization";
                     case 3:
-                        return "Alarmliste";
+                        return "Devices with Alarams";
                     default:
                         break;
                 }
