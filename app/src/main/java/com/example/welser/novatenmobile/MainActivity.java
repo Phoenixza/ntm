@@ -14,9 +14,10 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     static MainActivity app;
-    FragmentStatePagerAdapter adapterViewPager;
+    public FragmentStatePagerAdapter adapterViewPager;
+    public static ViewPager vpPager;
     //private SmartFragmentStatePagerAdapter adapterViewPager;
     public RadioButton five;
     public RadioButton fiveteen;
@@ -27,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //selection[0] = "false";
-        //selection[1] = "false";
-        selection = null;
+        //selection = null;
+        selection[0] = "false";
+        selection[1] = "false";
         //setupTabs();
         five = (RadioButton) findViewById(R.id.five);
         fiveteen = (RadioButton) findViewById(R.id.fiveteen);
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
+        vpPager = (ViewPager) findViewById(R.id.vpPager);
         /*if (bundles == null){
             adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
             vpPager.setAdapter(adapterViewPager);
@@ -76,9 +77,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Toast.makeText(getApplicationContext(), "Array 0 = " + selection[0] + " Array 1 = " + selection[1] +" Array 2 = " + selection[2]
-          //      +" Array 3 = " + selection[3] +" Array 4 = " + selection[4],Toast.LENGTH_LONG).show();
+
+
+        Toast.makeText(getApplicationContext(), "Array 0 = " + selection[0] + " Array 1 = " + selection[1] +" Array 2 = " + selection[2]
+               +" Array 3 = " + selection[3] +" Array 4 = " + selection[4],Toast.LENGTH_LONG).show();
         }
+
+//##############################################################################################################################################
+
 
     public static class MyPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -94,14 +100,17 @@ public class MainActivity extends AppCompatActivity {
 
             if (bundles == null){
                 NUM_ITEMS = 1;
+
                 return NUM_ITEMS;
             } else {
                 int i = 0;
+                int selecLength = selection.length;
 
-                while(selection.length> i){
+                while(selecLength > i){
                     String a = selection[i];
                     if (selection[i] != null){
-                        if(a.contains("t")){
+                        //if(a.contains("t")){
+                            if(a.equals("true")){
                             counter = counter +1;
                         }
                     }
@@ -109,9 +118,11 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 NUM_ITEMS = counter;
+                // adapterViewPager.notifyDataSetChanged();
+                vpPager.destroyDrawingCache();
                 notifyDataSetChanged();
-                return NUM_ITEMS;
 
+                return NUM_ITEMS;
             }
             //return NUM_ITEMS;
 
@@ -120,12 +131,6 @@ public class MainActivity extends AppCompatActivity {
         // Returns the fragment to display for that page
         @Override
         public android.support.v4.app.Fragment getItem(int position) {
-
-
-
-
-
-
 
             if(bundles == null){
                 return RalisierungsFragment.newInstance(0, "Page # 1");
@@ -139,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                         } else if(selection[5] == "true"){
                             return SecondFragment.newInstance(0, "Page # false");
                         }
-                        //Toast.makeText(app,""+selection[3],Toast.LENGTH_LONG).show();
+                            //Toast.makeText(app,""+selection[3],Toast.LENGTH_LONG).show();
                         return RalisierungsFragment.newInstance(0, "Page # 1");
                     case 1: // Fragment # 0 - This will show FirstFragment different title
                             return SecondFragment.newInstance(1, "Page # false");
@@ -151,7 +156,9 @@ public class MainActivity extends AppCompatActivity {
                         return null;
                 }
             }
+
         }
+
 
         // Returns the page title for the top indicator
         @Override
@@ -175,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
             }
             return null;
         }
+
     }
 
 
@@ -194,7 +202,6 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), AllProductsActivity.class);
         startActivity(i);
     }
-
 
      * Let's the user tap the activity icon to go 'home'.
      * Requires setHomeButtonEnabled() in onCreate().
@@ -222,7 +229,6 @@ public class MainActivity extends AppCompatActivity {
     } */
 
     private void onClick(int i) {
-
 
         switch (i) {
             case 1:
