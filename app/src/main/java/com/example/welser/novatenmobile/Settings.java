@@ -68,7 +68,7 @@ public class Settings extends Activity {
             switch (v.getId()){
                 case R.id.btn_save:
                     Intent intent = new Intent(Settings.this, MainActivity.class);
-                    // Prüfen ob Radiabuttons aktiv sind:
+                    // Pruefen ob Radiabuttons aktiv sind:
 
                     if(five.isChecked()){
                         selection[0]= "true";
@@ -104,6 +104,7 @@ public class Settings extends Activity {
 
                     intent.putExtra("Auswahl",selection);
                     startActivity(intent);
+                    //finish();
                     break;
                 case R.id.five:
                     int boola =radioGroup.getCheckedRadioButtonId();

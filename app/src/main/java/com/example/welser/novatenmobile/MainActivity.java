@@ -1,20 +1,25 @@
 package com.example.welser.novatenmobile;
 
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity{
+    SparseArray<View> views = new SparseArray<View>();
     static MainActivity app;
     public FragmentStatePagerAdapter adapterViewPager;
     public static ViewPager vpPager;
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity{
 
 
 
+
         // Attach the page change listener inside the activity
         vpPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
@@ -74,6 +80,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onPageScrollStateChanged(int state) {
                 // Code goes here
+
             }
         });
 
@@ -83,12 +90,15 @@ public class MainActivity extends AppCompatActivity{
                +" Array 3 = " + selection[3] +" Array 4 = " + selection[4],Toast.LENGTH_LONG).show();
         }
 
+
+
 //##############################################################################################################################################
 
 
     public static class MyPagerAdapter extends FragmentStatePagerAdapter {
 
         private static int NUM_ITEMS = 4;
+        public boolean mState = true;
 
         public MyPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
@@ -97,44 +107,46 @@ public class MainActivity extends AppCompatActivity{
         // Returns total number of pages
         @Override
         public int getCount() {
-
-            if (bundles == null){
-                NUM_ITEMS = 1;
-
+            if (bundles != null){
+                NUM_ITEMS = 3;
                 return NUM_ITEMS;
-            } else {
+            }
+
                 int i = 0;
                 int selecLength = selection.length;
 
-                while(selecLength > i){
-                    String a = selection[i];
+                //while(selecLength - 1 > i){
+                while(9 > i){
+                String a = selection[i];
                     if (selection[i] != null){
                         //if(a.contains("t")){
                             if(a.equals("true")){
-                            counter = counter +1;
+                            //counter ++;
                         }
                     }
                     i++;
+                    counter = 2;
                 }
 
-                NUM_ITEMS = counter;
+                //NUM_ITEMS = counter;
                 // adapterViewPager.notifyDataSetChanged();
-                vpPager.destroyDrawingCache();
+                //vpPager.destroyDrawingCache();
                 notifyDataSetChanged();
 
-                return NUM_ITEMS;
+                return counter;
             }
             //return NUM_ITEMS;
 
-        }
+
 
         // Returns the fragment to display for that page
         @Override
         public android.support.v4.app.Fragment getItem(int position) {
 
-            if(bundles == null){
+            if(bundles != null){
                 return RalisierungsFragment.newInstance(0, "Page # 1");
-            } else {
+            }
+
                 switch (position) {
                     case 0: // Fragment # 0 - This will show FirstFragment
                         if(selection[3] == "false"){
@@ -155,8 +167,19 @@ public class MainActivity extends AppCompatActivity{
                     default:
                         return null;
                 }
-            }
 
+
+        }
+
+        @Override
+        public void notifyDataSetChanged(){
+            super.notifyDataSetChanged();
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            notifyDataSetChanged();
+            return POSITION_NONE;
         }
 
 
@@ -241,6 +264,7 @@ public class MainActivity extends AppCompatActivity{
 
         Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
+        //finish();
     }
 }
 
