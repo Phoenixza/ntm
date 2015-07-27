@@ -101,4 +101,10 @@ public class JSONParser {
         return jObj;
 
     }
+
+    public String parseToString(int a){
+        String b;
+        b = parseToString(a);
+        return b;
+    }
 }

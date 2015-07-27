@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity{
     static public String selection[] = new String[9];
     public static Bundle bundles = null;
     public static int counter = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,9 @@ public class MainActivity extends AppCompatActivity{
         bundles = intent.getExtras();
         if(bundles != null){
             selection = bundles.getStringArray("Auswahl");
-            //Toast.makeText(getApplicationContext(),"5 Minuten Intervall "+selection[0] + " und 15 Minuten Intervall " + selection[1],Toast.LENGTH_LONG).show();
+            //MyPagerAdapter.NUM_ITEMS= 2;
+            MyPagerAdapter.setN(2);
+            Toast.makeText(getApplicationContext(),"5 Minuten Intervall "+selection[0] + " und 15 Minuten Intervall " + selection[1],Toast.LENGTH_LONG).show();
         }
 
 
@@ -99,6 +102,7 @@ public class MainActivity extends AppCompatActivity{
 
         private static int NUM_ITEMS = 4;
         public boolean mState = true;
+        public static int NUM_VIEWS = 4;
 
         public MyPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
@@ -107,6 +111,11 @@ public class MainActivity extends AppCompatActivity{
         // Returns total number of pages
         @Override
         public int getCount() {
+
+            if (NUM_VIEWS != 4){
+                notifyDataSetChanged();
+            }
+            /*
             if (bundles != null){
                 NUM_ITEMS = 3;
                 return NUM_ITEMS;
@@ -132,11 +141,15 @@ public class MainActivity extends AppCompatActivity{
                 // adapterViewPager.notifyDataSetChanged();
                 //vpPager.destroyDrawingCache();
                 notifyDataSetChanged();
-
-                return counter;
+                */
+                return NUM_VIEWS;
             }
             //return NUM_ITEMS;
 
+        public static void setN(int N){
+           NUM_VIEWS = N;
+
+        }
 
 
         // Returns the fragment to display for that page
@@ -170,7 +183,7 @@ public class MainActivity extends AppCompatActivity{
 
 
         }
-
+/*
         @Override
         public void notifyDataSetChanged(){
             super.notifyDataSetChanged();
@@ -181,7 +194,7 @@ public class MainActivity extends AppCompatActivity{
             notifyDataSetChanged();
             return POSITION_NONE;
         }
-
+*/
 
         // Returns the page title for the top indicator
         @Override

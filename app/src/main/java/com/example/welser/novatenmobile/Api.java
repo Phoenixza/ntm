@@ -48,4 +48,3 @@ public class Api {
     }
 
 }
-//HttpPost post = new HttpPost("http://mywebsite.me?login=true&username=myusername&password=mypassword&extrafield=xxx....");
