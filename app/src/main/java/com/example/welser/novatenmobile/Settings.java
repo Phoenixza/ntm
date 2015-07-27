@@ -67,7 +67,7 @@ public class Settings extends Activity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.btn_save:
-                    Intent intent = new Intent(Settings.this, MainActivity.class);
+
                     // Pruefen ob Radiabuttons aktiv sind:
 
                     if(five.isChecked()){
@@ -102,9 +102,21 @@ public class Settings extends Activity {
                         selection[7]= "true";
                     } else{ selection[7] = "false";}
 
-                    intent.putExtra("Auswahl",selection);
+
+                    Intent intent = new Intent(Settings.this, MainActivity.class);
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    //overridePendingTransition(0,0);
+                    //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    intent.putExtra("Auswahl", selection);
+                    //intent.setClass(getBaseContext(),getBaseContext().getClass());
+                    //getBaseContext().startActivity(intent);
+                    finish();
+                    //Settings.this.getApplicationContext().startActivity(intent);
                     startActivity(intent);
-                    //finish();
+
+
+
                     break;
                 case R.id.five:
                     int boola =radioGroup.getCheckedRadioButtonId();
@@ -130,13 +142,4 @@ public class Settings extends Activity {
         return wert;
     }
 
-
-
-
-
-
-
-
-
-    
 }
